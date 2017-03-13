@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.dgit.mybatis_dev.dao.StudentMapper">
+	
+	<sql id="selectSql">
+		SELECT STUD_ID, NAME, EMAIL, PHONE, DOB FROM students 
+	</sql>
+	<sql id="whereSql">
+		<where>
+			<if test="studId !=null">
+				STUD_ID = #{studId}
+			</if>
+		</where>
+	</sql>
+	<sql id="insertSql">
+		INSERT INTO students (STUD_ID,NAME,EMAIL,PHONE,DOB)
+		VALUES(#{studId},#{name},#{email},#{phone},#{dob});
+	</sql>
+	<sql id="updateSql">
+		UPDATE students
+	</sql>
+	<sql id="setSql">
+		<set>
+			<if test="name != null">
+				name=#{name},
+			</if>
+			<if test="email != null">
+				email=#{email},
+			</if>
+			<if test="name != null">
+				phone=#{phone},
+			</if>
+			<if test="name != null">
+				dob=#{dob},
+			</if>
+		</set>
+	</sql>
+	<sql id="deleteSql">
+		DELETE FROM students
+	</sql>
+	
+	
+	<select id="findStudentByNo" parameterType="Student" resultType="Student"> 
+		<include refid="selectSql"/>
+		<include refid="whereSql"/>
+	</select>
+	
+	<select id="selectOne" parameterType="Student" resultType="Student"> 
+		<include refid="selectSql"/>
+		<include refid="whereSql"/>
+	</select>
+	
+	<select id="findStudentByAll" resultType="Student">
+		<include refid="selectSql"/>
+	</select>
+	
+	<select id="selectAll" resultType="Student">
+		<include refid="selectSql"/>
+	</select>
+	
+	<insert id="insertStudent" parameterType="Student">
+		<include refid="insertSql"/>
+	</insert>
+	
+	<update id="updateStudent" parameterType="Student">
+		<include refid="updateSql"/>
+		<include refid="setSql"/>
+		<include refid="whereSql"/>
+	</update>
+	<delete id="deleteStudent" parameterType="Student">
+		<include refid="deleteSql"/>
+		<include refid="whereSql"/>
+	</delete>
+
+	
+	
+	
+</mapper>

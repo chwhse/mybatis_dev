@@ -17,8 +17,8 @@
 			</network-handler>
 		</connection>
 	</data-source>
-	<data-source id="mysql5-15ab63200ea-2632dfb65d15116a" provider="mysql" driver="mysql5" name="MySQL - mybatis_dev" save-password="true" show-system-objects="true" read-only="false">
-		<connection host="localhost" port="3306" server="" database="mybatis_dev" url="jdbc:mysql://localhost:3306/mybatis_dev" user="root" password="AQsJNFNMSwJl8w==" home="C:\Program Files\MySQL\MySQL Server 5.6" type="dev">
+	<data-source id="mysql5-15ab6451332-5de1748c3810aa7c" provider="mysql" driver="mysql5" name="MySQL - mybatis_dev" save-password="true" show-system-objects="true" read-only="false">
+		<connection host="localhost" port="3306" server="" database="mybatis_dev" url="jdbc:mysql://localhost:3306/mybatis_dev" user="user_mybatis_dev" password="AQsJNFNMSwJl8w==" home="C:\Program Files\MySQL\MySQL Server 5.6" type="dev">
 			<network-handler type="CONFIG" id="mysql_ssl" enabled="false" save-password="false">
 				<property name="ssl.public.key.retrieve" value="false"/>
 				<property name="ssl.verify.server" value="true"/>
