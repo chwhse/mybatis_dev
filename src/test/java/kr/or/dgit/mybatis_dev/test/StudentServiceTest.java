@@ -75,6 +75,7 @@ public class StudentServiceTest {
 		}
 		Assert.assertNotNull(selectStudent);
 	}
+	
 	@Test
 	public void sSelectStudentByAllForHashMap() {
 		List<Map<String, Object>> lists = studentService.selectStudentByAllForHashMap();
@@ -86,6 +87,22 @@ public class StudentServiceTest {
 			}
 		}
 		Assert.assertNotEquals(emptyLists, lists);
+	}
+	
+	@Test
+	public void tSelectStudentByNoWithAddress() {
+		Student student = new Student();
+		student.setStudId(1);
+		Student selectStudent = studentService.selectStudentByNoWithAddress(student);
+		Assert.assertNotNull(selectStudent);
+	}
+	
+	@Test
+	public void uSelectStudentByNoAssociationAddress() {
+		Student student = new Student();
+		student.setStudId(1);
+		Student selectStudent = studentService.selectStudentByNoAssociationAddress(student);
+		Assert.assertNotNull(selectStudent);
 	}
 	
 	

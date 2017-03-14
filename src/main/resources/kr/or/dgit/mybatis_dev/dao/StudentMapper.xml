@@ -19,6 +19,32 @@
 		<result property="email" column="email"/>
 	</resultMap>
 	
+	<resultMap type="Student" id="StudentResultExtends" extends="StudentResult">
+		<result property="address.addrId" column="addr_id"/>
+		<result property="address.street" column="street"/>
+		<result property="address.city" column="city"/>
+		<result property="address.state" column="state"/>
+		<result property="address.zip" column="zip"/>
+		<result property="address.country" column="country"/>
+	</resultMap>
+	
+	<resultMap type="Student" id="StudentResultAssociation" extends="StudentResult">
+		<association property="address" resultMap="kr.or.dgit.mybatis_dev.dao.AddressMapper.AddressResult"/>
+	</resultMap>
+	
+	<select id="selectStudentByNoAssociationAddress" parameterType="Student" resultMap="StudentResultAssociation">
+		select STUD_ID, NAME, EMAIL, PHONE, DOB, a.ADDR_ID, STREET, CITY, STATE, ZIP, COUNTRY
+		from students s left join addresses a on s.ADDR_ID = a.ADDR_ID
+		<include refid="whereSql"/>
+	</select>
+	
+	
+	<select id="selectStudentByNoWithAddress" parameterType="Student" resultMap="StudentResultExtends">
+		select STUD_ID, NAME, EMAIL, PHONE, DOB, a.ADDR_ID, STREET, CITY, STATE, ZIP, COUNTRY
+		from students s left join addresses a on s.ADDR_ID = a.ADDR_ID
+		<include refid="whereSql"/>
+	</select>
+	
 	<!-- ResultMap으로 결과 리턴 -->
 	
 	<select id="selectStudentByNoForResultMap" parameterType="Student" resultMap="StudentResult">

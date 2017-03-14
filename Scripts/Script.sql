@@ -83,7 +83,8 @@ INSERT INTO COURSE_ENROLLMENT (COURSE_ID,STUD_ID) VALUES
 
  
 SELECT STUD_ID, NAME, EMAIL, PHONE, DOB FROM mybatis_dev.students where STUD_ID = 1;
- 
-delete from students where STUD_ID=3;
-delete from students where STUD_ID=4;
-delete from students where STUD_ID=5;
+
+select STUD_ID, NAME, EMAIL, PHONE, DOB, a.ADDR_ID, STREET, CITY, STATE, ZIP, COUNTRY
+from students s left join addresses a on s.ADDR_ID = a.ADDR_ID
+where STUD_ID = 1;
+
