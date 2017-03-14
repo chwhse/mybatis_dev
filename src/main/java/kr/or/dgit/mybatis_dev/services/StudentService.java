@@ -18,6 +18,20 @@ public class StudentService {
 	private static final Log log = LogFactory.getLog(StudentService.class);
 	private String nameSpace = "kr.or.dgit.mybatis_dev.dao.StudentMapper";
 	
+	public Student selectStudentByNoForResultMap(Student student){
+		log.debug("selectStudentByNoForResultMap()");
+		try(SqlSession sqlSession = MybatisSqlSessionFactory.openSession()){
+			return sqlSession.selectOne(nameSpace+".selectStudentByNoForResultMap", student);
+		}
+	}
+	
+	public List<Student> selectStudentByAllForResultMap(){
+		log.debug("selectStudentByAllForResultMap()");
+		try(SqlSession sqlSession = MybatisSqlSessionFactory.openSession()){
+			return sqlSession.getMapper(StudentMapper.class).selectStudentByAllForResultMap();
+		}
+	}
+	
 	public Student findStudentByNo(Student student){
 		log.debug("findStudentByNo()");
 		try(SqlSession sqlSesseion = MybatisSqlSessionFactory.openSession()){

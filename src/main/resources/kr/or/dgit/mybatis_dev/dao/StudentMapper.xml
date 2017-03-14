@@ -12,66 +12,22 @@
 			</if>
 		</where>
 	</sql>
-	<sql id="insertSql">
-		INSERT INTO students (STUD_ID,NAME,EMAIL,PHONE,DOB)
-		VALUES(#{studId},#{name},#{email},#{phone},#{dob});
-	</sql>
-	<sql id="updateSql">
-		UPDATE students
-	</sql>
-	<sql id="setSql">
-		<set>
-			<if test="name != null">
-				name=#{name},
-			</if>
-			<if test="email != null">
-				email=#{email},
-			</if>
-			<if test="name != null">
-				phone=#{phone},
-			</if>
-			<if test="name != null">
-				dob=#{dob},
-			</if>
-		</set>
-	</sql>
-	<sql id="deleteSql">
-		DELETE FROM students
-	</sql>
 	
+	<resultMap type="Student" id="StudentResult">
+		<id property="studId" column="stud_id"/>
+		<result property="name" column="name"/>
+		<result property="email" column="email"/>
+	</resultMap>
 	
-	<select id="findStudentByNo" parameterType="Student" resultType="Student"> 
+	<select id="selectStudentByNoForResultMap" parameterType="Student" resultMap="StudentResult">
 		<include refid="selectSql"/>
 		<include refid="whereSql"/>
 	</select>
 	
-	<select id="selectOne" parameterType="Student" resultType="Student"> 
-		<include refid="selectSql"/>
-		<include refid="whereSql"/>
+	<select id="selectStudentByAllForResultMap" resultMap="StudentResult">
+		<include refid="selectSql"></include>
 	</select>
 	
-	<select id="findStudentByAll" resultType="Student">
-		<include refid="selectSql"/>
-	</select>
-	
-	<select id="selectAll" resultType="Student">
-		<include refid="selectSql"/>
-	</select>
-	
-	<insert id="insertStudent" parameterType="Student">
-		<include refid="insertSql"/>
-	</insert>
-	
-	<update id="updateStudent" parameterType="Student">
-		<include refid="updateSql"/>
-		<include refid="setSql"/>
-		<include refid="whereSql"/>
-	</update>
-	<delete id="deleteStudent" parameterType="Student">
-		<include refid="deleteSql"/>
-		<include refid="whereSql"/>
-	</delete>
-
 	
 	
 	
