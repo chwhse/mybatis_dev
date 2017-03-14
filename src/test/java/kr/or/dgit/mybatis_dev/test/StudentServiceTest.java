@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -58,6 +60,31 @@ public class StudentServiceTest {
 	public void qTestSelectStudentByAllForResultMap() {
 		List<Student> lists = studentService.selectStudentByAllForResultMap();
 		List<Student> emptyLists = Collections.emptyList();
+		Assert.assertNotEquals(emptyLists, lists);
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////
+	
+	@Test
+	public void rSelectStudentByNoForHashMap() {
+		Student student = new Student();
+		student.setStudId(1);
+		Map<String, Object> selectStudent = studentService.selectStudentByNoForHashMap(student);
+		for(Entry<String, Object> e : selectStudent.entrySet()){
+			System.out.printf("key : %s -> value : %s %n", e.getKey(),e.getValue());
+		}
+		Assert.assertNotNull(selectStudent);
+	}
+	@Test
+	public void sSelectStudentByAllForHashMap() {
+		List<Map<String, Object>> lists = studentService.selectStudentByAllForHashMap();
+		List<Map<String, Object>> emptyLists = Collections.emptyList();
+		
+		for(Map<String, Object> map : lists){
+			for(Entry<String, Object> e : map.entrySet()){
+				System.out.printf("key : %s -> value : %s %n", e.getKey(),e.getValue());
+			}
+		}
 		Assert.assertNotEquals(emptyLists, lists);
 	}
 	

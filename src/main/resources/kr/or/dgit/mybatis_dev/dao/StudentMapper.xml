@@ -19,12 +19,26 @@
 		<result property="email" column="email"/>
 	</resultMap>
 	
+	<!-- ResultMap으로 결과 리턴 -->
+	
 	<select id="selectStudentByNoForResultMap" parameterType="Student" resultMap="StudentResult">
 		<include refid="selectSql"/>
 		<include refid="whereSql"/>
 	</select>
 	
 	<select id="selectStudentByAllForResultMap" resultMap="StudentResult">
+		<include refid="selectSql"></include>
+	</select>
+	
+	
+	<!-- HashMap으로 결과 리턴 -->
+	
+	<select id="selectStudentByNoForHashMap" parameterType="Student" resultType="map">
+		<include refid="selectSql"/>
+		<include refid="whereSql"/>
+	</select>
+	
+	<select id="selectStudentByAllForHashMap" resultType="map">
 		<include refid="selectSql"></include>
 	</select>
 	
