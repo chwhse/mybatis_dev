@@ -45,6 +45,7 @@
 		<include refid="whereSql"/>
 	</select>
 	
+	
 	<!-- ResultMap으로 결과 리턴 -->
 	
 	<select id="selectStudentByNoForResultMap" parameterType="Student" resultMap="StudentResult">

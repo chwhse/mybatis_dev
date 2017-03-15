@@ -2,11 +2,7 @@ package kr.or.dgit.mybatis_dev.services;
 
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
 
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
 import org.apache.ibatis.logging.Log;
 import org.apache.ibatis.logging.LogFactory;
 import org.apache.ibatis.session.SqlSession;
@@ -17,6 +13,9 @@ import kr.or.dgit.mybatis_dev.util.MybatisSqlSessionFactory;
 
 public class StudentService {
 	private static final Log log = LogFactory.getLog(StudentService.class);
+	private static final StudentService instance = new StudentService();
+	public static StudentService getInstance() {return instance;}
+
 	private String nameSpace = "kr.or.dgit.mybatis_dev.dao.StudentMapper";
 	
 	public Student selectStudentByNoForResultMap(Student student){

@@ -28,7 +28,7 @@ public class StudentServiceTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		System.out.println("setUpBeforeClass()");
-		studentService = new StudentService();
+		studentService = StudentService.getInstance();
 	}
 
 	@AfterClass
@@ -66,7 +66,7 @@ public class StudentServiceTest {
 	////////////////////////////////////////////////////////////////////////////////////////
 	
 	@Test
-	public void rSelectStudentByNoForHashMap() {
+	public void rTestSelectStudentByNoForHashMap() {
 		Student student = new Student();
 		student.setStudId(1);
 		Map<String, Object> selectStudent = studentService.selectStudentByNoForHashMap(student);
@@ -77,7 +77,7 @@ public class StudentServiceTest {
 	}
 	
 	@Test
-	public void sSelectStudentByAllForHashMap() {
+	public void sTestSelectStudentByAllForHashMap() {
 		List<Map<String, Object>> lists = studentService.selectStudentByAllForHashMap();
 		List<Map<String, Object>> emptyLists = Collections.emptyList();
 		
@@ -90,7 +90,7 @@ public class StudentServiceTest {
 	}
 	
 	@Test
-	public void tSelectStudentByNoWithAddress() {
+	public void tTestSelectStudentByNoWithAddress() {
 		Student student = new Student();
 		student.setStudId(1);
 		Student selectStudent = studentService.selectStudentByNoWithAddress(student);
@@ -98,7 +98,7 @@ public class StudentServiceTest {
 	}
 	
 	@Test
-	public void uSelectStudentByNoAssociationAddress() {
+	public void uTestSelectStudentByNoAssociationAddress() {
 		Student student = new Student();
 		student.setStudId(1);
 		Student selectStudent = studentService.selectStudentByNoAssociationAddress(student);

@@ -88,3 +88,10 @@ select STUD_ID, NAME, EMAIL, PHONE, DOB, a.ADDR_ID, STREET, CITY, STATE, ZIP, CO
 from students s left join addresses a on s.ADDR_ID = a.ADDR_ID
 where STUD_ID = 1;
 
+select t.TUTOR_ID, t.NAME as TUTOR_NAME, EMAIL, c.COURSE_ID, c.NAME, DESCRIPTION, START_DATE, END_DATE,		a.ADDR_ID
+from tutors t 
+left join addresses a on t.ADDR_ID = a.ADDR_ID
+left join courses c on t.TUTOR_ID = c.TUTOR_ID;
+where t.TUTOR_ID = 1; 
+
+
