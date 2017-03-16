@@ -16,4 +16,26 @@
 						left join courses c on t.TUTOR_ID = c.TUTOR_ID
 		where t.TUTOR_ID = #{tutorId}; 
 	</select>
+	
+	<insert id="insertTutor" parameterType="Tutor">
+		INSERT INTO TUTORS
+		<trim prefix="values(" suffix=")" suffixOverrides=",">
+         <if test="tutorId !=null">
+            #{tutorId},
+         </if>
+         <if test="name !=null">
+            #{name},
+         </if>
+         <if test="email !=null">
+            #{email},
+         </if>
+         <if test="gender !=null">
+            #{gender},
+         </if>
+      </trim>
+	</insert>
+	
+	
+	
+
 </mapper>

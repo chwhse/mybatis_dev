@@ -25,6 +25,16 @@ public class TutorService {
 		}
 	}
 	
+	public int insertTutor(Tutor tutor){
+		log.debug("insertTutor()");
+		int res = -1;
+		try(SqlSession sqlSession = MybatisSqlSessionFactory.openSession()){
+			res = sqlSession.getMapper(TutorMapper.class).insertTutor(tutor);
+			sqlSession.commit();
+		}
+		return res;
+	}
+	
 	
 
 }

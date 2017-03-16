@@ -8,6 +8,7 @@ import org.apache.ibatis.logging.LogFactory;
 import org.apache.ibatis.session.SqlSession;
 
 import kr.or.dgit.mybatis_dev.dao.StudentMapper;
+import kr.or.dgit.mybatis_dev.dao.StudentMapperImpl;
 import kr.or.dgit.mybatis_dev.dto.Student;
 import kr.or.dgit.mybatis_dev.util.MybatisSqlSessionFactory;
 
@@ -19,46 +20,84 @@ public class StudentService {
 	private String nameSpace = "kr.or.dgit.mybatis_dev.dao.StudentMapper";
 	
 	public Student selectStudentByNoForResultMap(Student student){
-		log.debug("selectStudentByNoForResultMap()");
 		try(SqlSession sqlSession = MybatisSqlSessionFactory.openSession()){
-			return sqlSession.selectOne(nameSpace+".selectStudentByNoForResultMap", student);
+			StudentMapper studentMapper = new StudentMapperImpl(sqlSession);
+			return studentMapper.selectStudentByNoForResultMap(student);
 		}
 	}
 	
 	public List<Student> selectStudentByAllForResultMap(){
-		log.debug("selectStudentByAllForResultMap()");
 		try(SqlSession sqlSession = MybatisSqlSessionFactory.openSession()){
-			return sqlSession.getMapper(StudentMapper.class).selectStudentByAllForResultMap();
+			StudentMapper studentMapper = new StudentMapperImpl(sqlSession);
+			return studentMapper.selectStudentByAllForResultMap();
 		}
 	}
 	
 	public Map<String, Object> selectStudentByNoForHashMap(Student student){
-		log.debug("selectStudentByNoForHashMap()");
 		try(SqlSession sqlSession = MybatisSqlSessionFactory.openSession()){
-			return sqlSession.selectOne(nameSpace+".selectStudentByNoForHashMap", student);
+			StudentMapper studentMapper = new StudentMapperImpl(sqlSession);
+			return studentMapper.selectStudentByNoForHashMap(student);
 		}
 	}
 	
 	public List<Map<String, Object>> selectStudentByAllForHashMap(){
-		log.debug("selectStudentByAllForHashMap()");
 		try(SqlSession sqlSession = MybatisSqlSessionFactory.openSession()){
-			return sqlSession.selectList(nameSpace+".selectStudentByAllForHashMap");
+			StudentMapper studentMapper = new StudentMapperImpl(sqlSession);
+			return studentMapper.selectStudentByAllForHashMap();
 		}
 	}
 	
 	public Student selectStudentByNoWithAddress(Student student){
-		log.debug("selectStudentByNoWithAddress()");
 		try(SqlSession sqlSession = MybatisSqlSessionFactory.openSession()){
-			return sqlSession.selectOne(nameSpace+".selectStudentByNoWithAddress",student);
+			StudentMapper studentMapper = new StudentMapperImpl(sqlSession);
+			return studentMapper.selectStudentByNoWithAddress(student);
 		}
-
 	}
 	
 	public Student selectStudentByNoAssociationAddress(Student student){
-		log.debug("selectStudentByNoAssociationAddress()");
 		try(SqlSession sqlSession = MybatisSqlSessionFactory.openSession()){
-			return sqlSession.selectOne(nameSpace+".selectStudentByNoAssociationAddress",student);
+			StudentMapper studentMapper = new StudentMapperImpl(sqlSession);
+			return studentMapper.selectStudentByNoAssociationAddress(student);
 		}
+	}
+	public int updateStudent(Student student){
+		int res = -1;
+		try(SqlSession sqlSession = MybatisSqlSessionFactory.openSession()){
+			StudentMapper studentMapper = new StudentMapperImpl(sqlSession);
+			res = studentMapper.updateStudent(student);
+			sqlSession.commit(); 
+			
+		}
+		return res;
+	}
+	public int insertStudent(Student student){
+		int res = -1;
+		try(SqlSession sqlSession = MybatisSqlSessionFactory.openSession()){
+			StudentMapper studentMapper = new StudentMapperImpl(sqlSession);
+			res = studentMapper.insertStudent(student);
+			sqlSession.commit(); 
+			
+		}
+		return res;
+	}
+	public int deleteStudent(Student student){
+		int res = -1;
+		try(SqlSession sqlSession = MybatisSqlSessionFactory.openSession()){
+			StudentMapper studentMapper = new StudentMapperImpl(sqlSession);
+			res = studentMapper.deleteStudent(student);
+			sqlSession.commit(); 
+			
+		}
+		return res;
+	}
+	public int insertEnumStudent(Student student){
+		int res = -1;
+		try(SqlSession sqlSession = MybatisSqlSessionFactory.openSession()){
+			StudentMapper studentMapper = new StudentMapperImpl(sqlSession);
+			res = studentMapper.insertEnumStudent(student);
+			sqlSession.commit(); 
+		}
+		return res;
 	}
 
 	

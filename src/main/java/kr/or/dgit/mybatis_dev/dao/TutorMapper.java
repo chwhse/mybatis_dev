@@ -5,4 +5,5 @@ import kr.or.dgit.mybatis_dev.dto.Tutor;
 public interface TutorMapper {
 	
 	Tutor selectTutorById(int id);
+	int insertTutor(Tutor tutor);
 }

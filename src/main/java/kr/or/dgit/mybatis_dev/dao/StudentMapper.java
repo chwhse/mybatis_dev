@@ -17,4 +17,9 @@ public interface StudentMapper {
 	Student selectStudentByNoWithAddress(Student student);
 	
 	Student selectStudentByNoAssociationAddress(Student student);
+	
+	int updateStudent(Student student);
+	int insertStudent(Student student);
+	int deleteStudent (Student student);
+	int insertEnumStudent(Student student);
 }

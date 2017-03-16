@@ -19,6 +19,56 @@
 		<result property="email" column="email"/>
 	</resultMap>
 	
+	<update id="updateStudent" parameterType="Student">
+		UPDATE students
+		<set>
+			<if test="name != null">
+				NAME = #{name},	</if>   
+			<if test="email != null">
+				EMAIL = #{email},	</if> 
+			<if test="phone != null">
+				PHONE = #{phone},	</if> 
+			<if test="dob != null">
+				DOB = #{dob},	</if> 
+		</set>
+		<include refid="whereSql"></include>
+	</update>
+	
+		<insert id="insertStudent" parameterType="Student" >
+      insert into Student
+      <trim prefix="values(" suffix=")" suffixOverrides=",">
+         <if test="studId !=null">
+            #{studId},
+         </if>
+         <if test="name !=null">
+            #{name},
+         </if>
+         <if test="email !=null">
+            #{email},
+         </if>
+         <if test="phone !=null">
+            #{phone},
+         </if>
+         <if test="dob !=null">
+            #{dob},
+         </if>
+         <if test="gender !=null">
+            #{gender},
+         </if>
+      </trim>
+   	</insert>
+	
+	<insert id="insertEnumStudent" parameterType="Student">
+		INSERT INTO students (STUD_ID, NAME, EMAIL, PHONE, GENDER)
+		VALUES(#{studId},#{name},#{email},#{phone},#{gender})
+	</insert>
+	
+	<delete id="deleteStudent" parameterType="int">
+		DELETE FROM students
+		<include refid="whereSql"></include>
+	</delete>
+	
+	
 	<resultMap type="Student" id="StudentResultExtends" extends="StudentResult">
 		<result property="address.addrId" column="addr_id"/>
 		<result property="address.street" column="street"/>

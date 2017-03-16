@@ -1,3 +1,5 @@
+
+
 CREATE TABLE ADDRESSES (
   ADDR_ID INT(11) NOT NULL AUTO_INCREMENT,
   STREET VARCHAR(50) NOT NULL,
@@ -21,6 +23,8 @@ CREATE TABLE STUDENTS (
   CONSTRAINT FK_STUDENTS_ADDR FOREIGN KEY (ADDR_ID)  REFERENCES ADDRESSES (ADDR_ID)
 );
 
+ALTER TABLE students ADD COLUMN gender varchar(10) NULL ;
+
 
 CREATE TABLE TUTORS (
   TUTOR_ID INT(11) NOT NULL AUTO_INCREMENT,
@@ -34,6 +38,9 @@ CREATE TABLE TUTORS (
   PRIMARY KEY (TUTOR_ID),
   CONSTRAINT FK_TUTORS_ADDR FOREIGN KEY (ADDR_ID)   REFERENCES ADDRESSES (ADDR_ID)  
 );
+
+ALTER TABLE mybatis_dev.tutors ADD GENDER varchar(10) NULL ;
+
 
 CREATE TABLE COURSES (
   COURSE_ID INT(11) NOT NULL AUTO_INCREMENT,
@@ -88,10 +95,50 @@ select STUD_ID, NAME, EMAIL, PHONE, DOB, a.ADDR_ID, STREET, CITY, STATE, ZIP, CO
 from students s left join addresses a on s.ADDR_ID = a.ADDR_ID
 where STUD_ID = 1;
 
-select t.TUTOR_ID, t.NAME as TUTOR_NAME, EMAIL, c.COURSE_ID, c.NAME, DESCRIPTION, START_DATE, END_DATE,		a.ADDR_ID
+select t.TUTOR_ID, t.NAME as TUTOR_NAME, EMAIL, c.COURSE_ID, c.NAME, DESCRIPTION, START_DATE, END_DATE /*,a.ADDR_ID*/
 from tutors t 
 left join addresses a on t.ADDR_ID = a.ADDR_ID
-left join courses c on t.TUTOR_ID = c.TUTOR_ID;
+left join courses c on t.TUTOR_ID = c.TUTOR_ID
 where t.TUTOR_ID = 1; 
 
 
+select *
+from courses
+where TUTOR_ID = 1 
+and name like "%java%" 
+and START_DATE >= '2013-01-01'
+and END_DATE <= '2013-09-01';
+
+
+select *
+from courses
+where END_DATE <= '2013-08-01';
+where NAME like '%java%';
+where TUTOR_ID = 1;
+
+
+select *
+from courses
+where TUTOR_ID in (1,2);
+
+
+INSERT INTO students
+(STUD_ID, NAME, EMAIL, PHONE, DOB, ADDR_ID)
+VALUES(9, '조시은','@naver.com', '053-000-0000', '2017-03-15', 4);
+
+UPDATE students
+SET NAME='조시으니', DOB='1992-02-22'
+WHERE STUD_ID=9;
+
+DELETE FROM students
+WHERE STUD_ID=9;
+
+select * from students;
+
+create table user_PICS(
+	id int(11) not null auto_increment,
+	name varchar(50) default null,
+	pic blob,
+	bio longtext,
+	primary key(id)
+);

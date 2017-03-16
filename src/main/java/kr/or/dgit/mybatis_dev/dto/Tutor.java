@@ -6,9 +6,34 @@ public class Tutor {
 	private int tutorId;
 	private String name;
 	private String email;
-	private Address address;
+	private PhoneNumber phone;
 	private List<Course> courses;
+	private Gender gender;
 	
+	public Tutor() {}
+	public Tutor(int tutorId, String name, String email,  Gender gender) {
+		super();
+		this.tutorId = tutorId;
+		this.name = name;
+		this.email = email;
+		this.gender = gender;
+	}
+	
+	public Tutor(int tutorId, String name, String email, PhoneNumber phone, List<Course> courses, Gender gender) {
+		super();
+		this.tutorId = tutorId;
+		this.name = name;
+		this.email = email;
+		this.phone = phone;
+		this.courses = courses;
+		this.gender = gender;
+	}
+	public Gender getGender() {
+		return gender;
+	}
+	public void setGender(Gender gender) {
+		this.gender = gender;
+	}
 	public int getTutorId() {
 		return tutorId;
 	}
@@ -27,11 +52,12 @@ public class Tutor {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Address getAddress() {
-		return address;
+	
+	public PhoneNumber getPhone() {
+		return phone;
 	}
-	public void setAddress(Address address) {
-		this.address = address;
+	public void setPhone(PhoneNumber phone) {
+		this.phone = phone;
 	}
 	public List<Course> getCourses() {
 		return courses;
@@ -41,8 +67,8 @@ public class Tutor {
 	}
 	@Override
 	public String toString() {
-		return String.format("%s %s %s %s %s", tutorId, name, email,
-				address, courses);
+		return String.format("%s %s %s %s %s %s", tutorId, name, email,
+				phone, courses, gender);
 	}
 	
 	

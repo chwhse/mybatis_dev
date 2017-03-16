@@ -17,6 +17,7 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
+import kr.or.dgit.mybatis_dev.dto.Gender;
 import kr.or.dgit.mybatis_dev.dto.PhoneNumber;
 import kr.or.dgit.mybatis_dev.dto.Student;
 import kr.or.dgit.mybatis_dev.services.StudentService;
@@ -48,7 +49,7 @@ public class StudentServiceTest {
 
 	
 	////////////////////////////////////////////////////////////////170313
-	
+	/*
 	@Test
 	public void pTestSelectStudentByNoForResultMap() {
 		Student student = new Student();
@@ -105,5 +106,36 @@ public class StudentServiceTest {
 		Assert.assertNotNull(selectStudent);
 	}
 	
+	*/
+/*	
+	@Test
+	public void vTestUpdateStudent(){
+		Student std = new Student(9, "조시으니", "@naver.com", new Date(1992-02-22));
+		int res = studentService.updateStudent(std);
+		Assert.assertEquals(1, res);
+
+	}
+	@Test
+	public void wTestInsertStudent(){
+		Student std = new Student(9, "조시은", "chwhse@google.com", new Date());
+		int res = studentService.insertStudent(std);
+		Assert.assertEquals(1, res);
+	}
+	@Test
+	public void xTestUpdateStudent(){
+		Student std = new Student();
+		std.setStudId(9);
+		int res = studentService.deleteStudent(std);
+		Assert.assertEquals(1, res);
+	}	
 	
+	@Test
+	public void yTestInsertEnumStudent(){
+		Student std = new Student(3	, "홍길동", "hgd@naver.com", new PhoneNumber("010-000-0000"), Gender.FEMALE);
+		int res = studentService.insertEnumStudent(std);
+		 Assert.assertEquals(1, res);
+		
+	}*/
+	
+
 }

@@ -8,4 +8,77 @@
 		<result property="startDate" column="startDate"/>
 		<result property="endDate" column="endDate"/>
 	</resultMap>
+	
+	<select id="searchCourse" parameterType="hashmap" resultMap="CourseResult">
+			select *	from courses where TUTOR_ID = #{tutorId}
+		<if test="courseName != null">		<!-- param.getkey("courseName") -->
+			and name like #{courseName}
+		</if>	
+		<if test="startDate != null">
+			and START_DATE &gt;= #{startDate}
+		</if> 
+		<if test="endDate != null">
+			and END_DATE &lt;= #{endDate}		
+		</if>
+	</select>
+	
+	<select id="SearchChooseCourse" parameterType="hashmap" resultMap="CourseResult">
+		select * from courses
+		<choose>
+			<when test="searchBy=='Tutor'">
+				where TUTOR_ID = #{tutorId}
+			</when>
+			<when test="searchBy=='CourseName'">
+				where NAME like #{courseName}
+			</when>
+			<otherwise>
+				where END_DATE &lt;= now()
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="searchWhereCourse" parameterType="hashmap" resultMap="CourseResult">
+		Select * from courses
+		<where>
+			<if test="tutorId != null">
+				tutor_id = #{tutorId}
+			</if>
+			<if test="courseName != null">
+				And name like #{courseName}
+			</if>
+			<if test="startDate != null">
+				And start_date &gt;= #{startDate}
+			</if>
+			<if test="endDate != null">
+				And end_date &lt;= #{endDate}
+			</if>
+		</where>
+	</select>
+	
+	<select id="searchTrimCourse" parameterType="hashmap" resultMap="CourseResult">
+		Select * from courses
+		<trim prefix="where" prefixOverrides="and | or">
+			<if test="tutorId != null">
+				tutor_id = #{tutorId}
+			</if>
+			<if test="courseName != null">
+				And name like #{courseName}
+			</if>
+		</trim>
+	</select>
+	
+	<select id="searchForeachCourseByTutors" parameterType="map" resultMap="CourseResult">
+		Select * from courses
+		<if test="tutorIds != null">
+			<where>
+			 tutor_id IN
+				<foreach collection="tutorIds" item="tutorId" index="index" open="(" close=")" separator=",">
+					#{tutorId}
+				</foreach>
+			</where>
+		</if>
+	</select>
+	
+
+	
 </mapper>

@@ -14,6 +14,7 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import kr.or.dgit.mybatis_dev.dto.Course;
+import kr.or.dgit.mybatis_dev.dto.Gender;
 import kr.or.dgit.mybatis_dev.dto.Tutor;
 import kr.or.dgit.mybatis_dev.services.TutorService;
 
@@ -42,7 +43,7 @@ public class TutorServiceTest {
 		System.out.println("tearDown()");
 	}
 
-	
+	/*
 	@Test
 	public void aTestSelectTutorById(){
 		Tutor tutor = tutorService.selectTutorById(1);
@@ -54,6 +55,18 @@ public class TutorServiceTest {
 			Assert.assertNotNull(c);
 			System.out.println(c);
 		}
+	} */
+	
+	@Test
+	public void bTestInsertTutor(){
+		Tutor tutor = new Tutor();
+		tutor.setTutorId(9);
+		tutor.setName("hong");
+		tutor.setEmail("hgd@");
+		tutor.setGender(Gender.MALE);
+		
+		int res = tutorService.insertTutor(tutor);
+		Assert.assertEquals(1, res);
 	}
 
 }
