@@ -139,6 +139,9 @@ create table user_PICS(
 	id int(11) not null auto_increment,
 	name varchar(50) default null,
 	pic blob,
-	bio longtext,
+	bio longtext,		/* 오라클에서 CLOP mysql에서 longtext */
 	primary key(id)
 );
+
+
+SELECT id, name, pic, bio   FROM user_pics   where id=1;

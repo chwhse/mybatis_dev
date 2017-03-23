@@ -18,7 +18,7 @@
 	</select>
 	
 	<insert id="insertTutor" parameterType="Tutor">
-		INSERT INTO TUTORS
+		INSERT INTO TUTORS (TUTOR_ID, NAME, EMAIL, GENDER)
 		<trim prefix="values(" suffix=")" suffixOverrides=",">
          <if test="tutorId !=null">
             #{tutorId},

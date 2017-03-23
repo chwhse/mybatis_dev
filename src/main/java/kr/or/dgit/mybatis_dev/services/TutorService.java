@@ -13,8 +13,8 @@ public class TutorService {
 	private static final TutorService instance = new TutorService();
 	public static TutorService getInstance() {return instance;}
 	
-	private String nameSpace = "kr.or.dgit.mybatis_dev.dao.TutorMapper";
-	
+	/*private String nameSpace = "kr.or.dgit.mybatis_dev.dao.TutorMapper";
+	*/
 
 	private TutorService() {}
 	

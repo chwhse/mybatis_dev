@@ -11,4 +11,22 @@
 		<result property="country" column="country"/>
 	</resultMap>
 	
+	<sql id="selectSql">SELECT ADDR_ID, STREET, CITY, STATE, ZIP, COUNTRY FROM addresses</sql>
+	<sql id="whereSql">where state = #{state} and zip = #{zip}</sql>
+	
+	<select id="selectAdderessByAddrIdAndState" resultMap="AddressResult">
+		<include refid="selectSql"/>
+		where state = #{param1} and zip = #{param2}
+	</select>
+	
+	<select id="selectAdderessByAddrIdAndStateForMap" parameterType="map" resultMap="AddressResult">
+		<include refid="selectSql"/>
+		<include refid="whereSql"/>
+	</select>
+	
+	<select id="selectAddressByAll" resultMap="AddressResult">
+		<include refid="selectSql"/>
+	</select>
+	
+	
 </mapper>
